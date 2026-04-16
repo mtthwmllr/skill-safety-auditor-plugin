@@ -1,0 +1,22 @@
+{
+  "name": "skill-safety-auditor",
+  "owner": {
+    "name": "Matthew Miller",
+    "email": "mtthwmllr@gmail.com"
+  },
+  "metadata": {
+    "description": "Security auditing tools for Claude Code — review skills for risks before or after installation."
+  },
+  "plugins": [
+    {
+      "name": "skill-safety-auditor",
+      "source": "./plugins/skill-safety-auditor",
+      "description": "Audits Claude Code skills for security risks before or after installation. Supports pre-download, post-download, and post-install audit modes.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Matthew Miller",
+        "email": "mtthwmllr@gmail.com"
+      }
+    }
+  ]
+}
