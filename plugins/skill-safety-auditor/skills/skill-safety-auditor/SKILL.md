@@ -79,6 +79,11 @@ Use WebFetch to retrieve the raw SKILL.md content.
 - If fetch fails or returns non-200: report the failure. Do not proceed. Recommend Mode 2 or manual review.
 - If content lacks valid YAML frontmatter: flag as UNKNOWN RISK (check D4 in security-checks.md).
 
+**Integrity note:** For high-trust audits, ask the user to verify the fetched content
+matches the expected commit. They can confirm via the GitHub UI: navigate to the file,
+click "History", and check that the latest commit SHA matches what was current when
+they found the skill. This guards against content being swapped between discovery and audit.
+
 ### 1-3 — Fetch Bundled Scripts (Best Effort)
 
 Scan the SKILL.md body for references to bundled files:
@@ -104,15 +109,22 @@ Use the template in `references/report-format.md`.
 ### 2-1 — Locate the .skill File
 
 A `.skill` file is a zip archive. Ask the user for the path to the file, then
-ask them to run the following command to extract it to a safe temporary location:
+ask them to run the following commands to inspect and extract it safely:
 
+```bash
+# Step 1 — list contents first; look for any path containing '..' or starting with '/'
+unzip -l ~/Downloads/skill-name.skill
+
+# Step 2 — if no suspicious paths found, extract to an isolated temp directory
+SKILL_DIR=$(mktemp -d) && unzip ~/Downloads/skill-name.skill -d "$SKILL_DIR" && echo "Extracted to: $SKILL_DIR"
 ```
-unzip ~/Downloads/skill-name.skill -d /tmp/skill-review
-```
 
-(Replace the path with wherever their file actually is.)
+(Replace `~/Downloads/skill-name.skill` with wherever their file actually is.)
 
-Once extracted, proceed with the path `/tmp/skill-review` (or whatever they used).
+**Before extracting:** confirm no entry in the `unzip -l` output contains `..` or
+starts with `/`. If any do, the archive is malicious — do not extract it.
+
+Once extracted, proceed with the path printed by the `echo` command above.
 
 ### 2-2 — Read SKILL.md
 
