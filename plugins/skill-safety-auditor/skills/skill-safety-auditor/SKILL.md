@@ -1,6 +1,5 @@
 ---
 name: skill-safety-auditor
-version: 1.1.0
 description: >
   Audits a Claude Code skill for security risks in three modes: before download
   (from a URL or install command), after download but before install (from a
@@ -12,10 +11,7 @@ description: >
   it?", "audit this skill", or pastes any link to a skill repository or .skill
   file. If a user mentions installing ANY skill, proactively offer to audit it
   first — do not wait for them to ask.
-allowed-tools:
-  - Read
-  - WebFetch
-  - Glob
+allowed-tools: "Read, WebFetch, Glob"
 ---
 
 # Skill Safety Auditor
