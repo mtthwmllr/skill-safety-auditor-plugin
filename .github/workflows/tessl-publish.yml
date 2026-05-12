@@ -1,0 +1,16 @@
+name: Publish to Tessl
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tesslio/setup-tessl@v2
+        with:
+          token: ${{ secrets.TESSL_TOKEN }}
+      - run: tessl tile publish
+        working-directory: plugins/skill-safety-auditor/skills/skill-safety-auditor

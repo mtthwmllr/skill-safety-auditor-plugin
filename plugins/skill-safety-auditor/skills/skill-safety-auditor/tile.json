@@ -1,0 +1,11 @@
+{
+  "name": "mtthwmllr/skill-safety-auditor",
+  "version": "1.1.0",
+  "private": false,
+  "summary": "Audits a Claude Code skill for security risks in three modes: before download (from a URL or install command), after download but before install (from a .skill file), or after install (from a local skills directory). Use this skill whenever a user is about to install a skill from any source — including GitHub URLs, git clone commands, npx/npm commands, curl/wget downloads, pip installs, marketplace links, or raw SKILL.md URLs. Also trigger when a user asks \"is this skill safe?\", \"should I trust this skill?\", \"can you check this before I install it?\", \"audit this skill\", or pastes any link to a skill repository or .skill file. If a user mentions installing ANY skill, proactively offer to audit it first — do not wait for them to ask.\n",
+  "skills": {
+    "skill-safety-auditor": {
+      "path": "SKILL.md"
+    }
+  }
+}
